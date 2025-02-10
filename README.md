@@ -26,4 +26,5 @@ ItemRow: Composable to display each individual item.
 **Entry Point: Start Application**
 MainActivity: Activity is entry point which has Jetpack screen
 
-
+**App ScreenShot: **
+<img width="410" alt="image" src="https://github.com/user-attachments/assets/10e5f7a0-ed0b-4c2f-88fe-50875b534a1b" />
