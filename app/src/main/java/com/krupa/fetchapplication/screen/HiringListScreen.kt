@@ -26,20 +26,28 @@ fun HiringListScreen(viewModel: HiringListViewModel = hiltViewModel()) {
         viewModel.fetchData()
     }
     Column(modifier = Modifier.fillMaxSize()) {
-        LazyColumn {
-            val groupedItems = list.groupBy { it.listId }
-            groupedItems.forEach { (listId, itemsList) ->
-                item {
-                    Text(
-                        text = "ListId: $listId",
-                        style = MaterialTheme.typography.displayMedium,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
-                item {
-                    ItemRow(itemList = itemsList)
+        if (list.isNotEmpty()){
+            LazyColumn {
+                val groupedItems = list.groupBy { it.listId }
+                groupedItems.forEach { (listId, itemsList) ->
+                    item {
+                        Text(
+                            text = "ListId: $listId",
+                            style = MaterialTheme.typography.displayMedium,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
+                    item {
+                        ItemRow(itemList = itemsList)
+                    }
                 }
             }
+        } else {
+            Text(
+                text = viewModel.errorState.collectAsState().value.orEmpty(),
+                style = MaterialTheme.typography.displayMedium,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 
